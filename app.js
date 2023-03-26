@@ -40,21 +40,21 @@ const deleteUser = (req, res) => {
   });
 };
 
-// const userRouter = express.Router();
+const userRouter = express.Router();
 
-// userRouter.get('/', findAllUsers);
-// userRouter.post('/', createUser);
-// userRouter.get('/:userid', findOneUser);
-// userRouter.patch('/:userid', updateUser);
-// userRouter.delete('/:userid', deleteUser);
+userRouter.get('/', findAllUsers);
+userRouter.post('/', createUser);
+userRouter.get('/:userid', findOneUser);
+userRouter.patch('/:userid', updateUser);
+userRouter.delete('/:userid', deleteUser);
 
-// app.use('/api/v1/users', userRouter);
+app.use('/api/v1/users', userRouter);
 
-app.get('/api/v1/users', findAllUsers);
-app.post('/api/v1/users', createUser);
-app.get('/api/v1/users/:userid', findOneUser);
-app.patch('/api/v1/users/:userid', updateUser);
-app.delete('/api/v1/users/:userid', deleteUser);
+// app.get('/api/v1/users', findAllUsers);
+// app.post('/api/v1/users', createUser);
+// app.get('/api/v1/users/:userid', findOneUser);
+// app.patch('/api/v1/users/:userid', updateUser);
+// app.delete('/api/v1/users/:userid', deleteUser);
 //:::::::::::::::::::::::FIN USERS::::::::::::::::::::::::::::::::
 
 //:::::::::::::::::::::::::INICIO REPAIRS::::::::::::::::::::::::::::::
@@ -87,21 +87,21 @@ const deleteRepair = (req, res) => {
     message: 'Rox, estoy en la ruta delete repairs',
   });
 };
-// const repairRouter = express.Router();
+const repairRouter = express.Router();
 
-// repairRouter.get('/', findAllRepairs);
-// repairRouter.post('/', createRepair);
-// repairRouter.get('/repair/:id', findOneRepair);
-// repairRouter.patch('/repair/:id', updateRepair);
-// repairRouter.delete('/repair/:id', deleteRepair);
+repairRouter.get('/', findAllRepairs);
+repairRouter.post('/', createRepair);
+repairRouter.get('/repair/:id', findOneRepair);
+repairRouter.patch('/repair/:id', updateRepair);
+repairRouter.delete('/repair/:id', deleteRepair);
 
-// app.use('/api/v1/repairs/user/:userid', repairRouter);
+app.use('/api/v1/repairs/user/:userid', repairRouter);
 
-app.get('/api/v1/repairs/user/:userid', findAllRepairs);
-app.post('/api/v1/repairs/user/:userid', createRepair);
-app.get('/api/v1/repairs/user/:userid/repair/:id', findOneRepair);
-app.patch('/api/v1/repairs/user/:userid/repair/:id', updateRepair);
-app.delete('/api/v1/repairs/user/:userid/repair/:id', deleteRepair);
+// app.get('/api/v1/repairs/user/:userid', findAllRepairs);
+// app.post('/api/v1/repairs/user/:userid', createRepair);
+// app.get('/api/v1/repairs/user/:userid/repair/:id', findOneRepair);
+// app.patch('/api/v1/repairs/user/:userid/repair/:id', updateRepair);
+// app.delete('/api/v1/repairs/user/:userid/repair/:id', deleteRepair);
 //:::::::::::::::::::::::FIN REPAIRS::::::::::::::::::::::::::::::::
 
 console.log('Roxanita, me ejecute');
