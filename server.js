@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const app = require('./app');
 const { dbUsers } = require('./database/users.config');
 const { dbRepairs } = require('./database/repairs.config');
@@ -22,7 +24,7 @@ dbRepairs
   .then(() => console.log('DatabaseRepairs Synced!'))
   .catch((error) => console.log(error));
 
-const port = 3030;
+const port = process.env.PORT || 3030;
 app.listen(port, () => {
   console.log(`app running on port ${port}`);
 });

@@ -85,6 +85,7 @@ exports.deleteUser = async (req, res) => {
   // usar el update para pasar el estado a unavailable o cancelled
   await user.update({ status: 'unavailable' });
   res.status(200).json({
+    status: 'success',
     message: 'the user has been disabled',
   });
 };

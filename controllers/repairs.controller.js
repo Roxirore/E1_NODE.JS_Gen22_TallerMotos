@@ -86,6 +86,7 @@ exports.deleteRepair = async (req, res) => {
   // usar el update para pasar el estado a unavailable o cancelled
   await repair.update({ status: 'cancelled' });
   res.status(200).json({
+    status: 'success',
     message: 'the repairr has been cancelled',
   });
 };
