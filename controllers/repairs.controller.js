@@ -1,11 +1,11 @@
 exports.findAllRepairs = (req, res) => {
-  res.json({
+  res.status(200).json({
     message: 'Rox, estoy en la ruta get repairs',
   });
 };
 exports.createRepair = (req, res) => {
   console.log(req.body);
-  res.json({
+  res.status(201).json({
     message: 'Rox, estoy en la ruta post repairs',
   });
 };

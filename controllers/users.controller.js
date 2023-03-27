@@ -5,7 +5,7 @@ exports.findAllUsers = (req, res) => {
 };
 exports.createUser = (req, res) => {
   console.log(req.body);
-  res.json({
+  res.status(201).json({
     message: 'Rox, estoy en la ruta post users',
   });
 };
