@@ -67,8 +67,25 @@ exports.updateRepair = async (req, res) => {
     requestTime,
   });
 };
-exports.deleteRepair = (req, res) => {
-  res.json({
-    message: 'estoy en la ruta delete repairs',
+exports.deleteRepair = async (req, res) => {
+  // traer el id de la res,params
+  const { id } = req.params;
+  // buscar el producto a actualizar
+  const repair = await Repair.findOne({
+    where: {
+      id,
+    },
+  });
+  // validar si el producto existe sino error
+  if (!repair) {
+    return res.status(404).json({
+      status: 'error',
+      message: `the repairr with id: ${id} is not found`,
+    });
+  }
+  // usar el update para pasar el estado a unavailable o cancelled
+  await repair.update({ status: 'cancelled' });
+  res.status(200).json({
+    message: 'the repairr has been cancelled',
   });
 };

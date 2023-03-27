@@ -65,8 +65,26 @@ exports.updateUser = async (req, res) => {
     message: 'the user has been updated',
   });
 };
-exports.deleteUser = (req, res) => {
-  res.json({
-    message: 'estoy en la ruta delete users',
+exports.deleteUser = async (req, res) => {
+  // traer el id de la res,params
+  const { userid } = req.params;
+  // buscar el producto a actualizar
+  const user = await User.findOne({
+    where: {
+      userid,
+      status: 'available',
+    },
+  });
+  // validar si el producto existe sino error
+  if (!user) {
+    return res.status(404).json({
+      status: 'error',
+      message: `the user with id: ${userid} is not found`,
+    });
+  }
+  // usar el update para pasar el estado a unavailable o cancelled
+  await user.update({ status: 'unavailable' });
+  res.status(200).json({
+    message: 'the user has been disabled',
   });
 };
