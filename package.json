@@ -1,0 +1,18 @@
+{
+  "name": "e1_taller_motos_app",
+  "version": "1.0.0",
+  "description": "taller_motos_app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon app.js"
+  },
+  "author": "Roxana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0"
+  }
+}

@@ -1,6 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const usersRoutes = require('./routes/users.routes');
+const repairsRoutes = require('./routes/repairs.routes');
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -12,43 +15,7 @@ app.use((req, res, next) => {
 
 //:::::::::::::::::::::::::INICIO USERS::::::::::::::::::::::::::::::
 
-const findAllUsers = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get users',
-  });
-};
-const createUser = (req, res) => {
-  console.log(req.body);
-  res.json({
-    message: 'Rox, estoy en la ruta post users',
-  });
-};
-const findOneUser = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get one user',
-  });
-};
-const updateUser = (req, res) => {
-  console.log(req.params);
-  res.json({
-    message: 'Rox, estoy en la ruta patch users',
-  });
-};
-const deleteUser = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta delete users',
-  });
-};
-
-const userRouter = express.Router();
-
-userRouter.get('/', findAllUsers);
-userRouter.post('/', createUser);
-userRouter.get('/:userid', findOneUser);
-userRouter.patch('/:userid', updateUser);
-userRouter.delete('/:userid', deleteUser);
-
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/users', usersRoutes);
 
 // app.get('/api/v1/users', findAllUsers);
 // app.post('/api/v1/users', createUser);
@@ -58,44 +25,8 @@ app.use('/api/v1/users', userRouter);
 //:::::::::::::::::::::::FIN USERS::::::::::::::::::::::::::::::::
 
 //:::::::::::::::::::::::::INICIO REPAIRS::::::::::::::::::::::::::::::
-const findAllRepairs = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get repairs',
-  });
-};
-const createRepair = (req, res) => {
-  console.log(req.body);
-  res.json({
-    message: 'Rox, estoy en la ruta post repairs',
-  });
-};
-const findOneRepair = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get one repair',
-  });
-};
-const updateRepair = (req, res) => {
-  console.log(req.params);
-  const { requestTime } = req;
-  res.json({
-    message: 'Rox, estoy en la ruta patch repairs',
-    requestTime,
-  });
-};
-const deleteRepair = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta delete repairs',
-  });
-};
-const repairRouter = express.Router();
 
-repairRouter.get('/', findAllRepairs);
-repairRouter.post('/', createRepair);
-repairRouter.get('/repair/:id', findOneRepair);
-repairRouter.patch('/repair/:id', updateRepair);
-repairRouter.delete('/repair/:id', deleteRepair);
-
-app.use('/api/v1/repairs/user/:userid', repairRouter);
+app.use('/api/v1/repairs/user/:userid', repairsRoutes);
 
 // app.get('/api/v1/repairs/user/:userid', findAllRepairs);
 // app.post('/api/v1/repairs/user/:userid', createRepair);
