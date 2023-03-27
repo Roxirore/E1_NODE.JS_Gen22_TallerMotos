@@ -43,11 +43,27 @@ exports.findOneRepair = async (req, res) => {
     repair,
   });
 };
-exports.updateRepair = (req, res) => {
-  console.log(req.params);
+exports.updateRepair = async (req, res) => {
+  const { id } = req.params;
   const { requestTime } = req;
-  res.json({
-    message: 'estoy en la ruta patch repairs',
+  const { date, status, userid } = req.body;
+
+  const repair = await Repair.findOne({
+    where: {
+      id,
+      status: 'pending',
+    },
+  });
+  if (!repair) {
+    return res.status(404).json({
+      status: 'error',
+      message: `repair with id: ${id} is not found`,
+    });
+  }
+  await repair.update({ date: requestTime, status: 'completed', userid });
+  res.status(200).json({
+    status: 'success',
+    message: 'the repair has been updated',
     requestTime,
   });
 };

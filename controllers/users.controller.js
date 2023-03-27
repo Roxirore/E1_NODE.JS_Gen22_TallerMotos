@@ -44,10 +44,25 @@ exports.findOneUser = async (req, res) => {
     user,
   });
 };
-exports.updateUser = (req, res) => {
-  console.log(req.params);
-  res.json({
-    message: 'estoy en la ruta patch users',
+exports.updateUser = async (req, res) => {
+  const { userid } = req.params;
+  const { name, email, password, role, status } = req.body;
+  const user = await User.findOne({
+    where: {
+      userid,
+      status: 'available',
+    },
+  });
+  if (!user) {
+    return res.status(404).json({
+      status: 'error',
+      message: `the user with id: ${userid} is not found`,
+    });
+  }
+  await user.update({ name, email });
+  res.status(200).json({
+    status: 'success',
+    message: 'the user has been updated',
   });
 };
 exports.deleteUser = (req, res) => {
