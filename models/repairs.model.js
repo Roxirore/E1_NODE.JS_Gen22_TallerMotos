@@ -1,4 +1,25 @@
 const { DataTypes } = require('sequelize');
-const { db } = require('../database/users.config');
+const { dbRepairs } = require('../database/repairs.config');
 
-const Repair
+const Repair = dbRepairs.define('repairs', {
+  id: {
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    type: DataTypes.INTEGER,
+  },
+  date: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  userid: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+});
+
+module.exports = Repair;
