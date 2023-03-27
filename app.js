@@ -35,10 +35,6 @@ app.use('/api/v1/repairs/user/:userid', repairsRoutes);
 // app.delete('/api/v1/repairs/user/:userid/repair/:id', deleteRepair);
 //:::::::::::::::::::::::FIN REPAIRS::::::::::::::::::::::::::::::::
 
-console.log('Roxanita, me ejecute');
-const port = 3030;
-app.listen(port, () => {
-  console.log(`app running on port ${port}`);
-});
-// /api/v1/users
-// /api/v1/repairs
+console.log('me ejecute');
+
+module.exports = app;
