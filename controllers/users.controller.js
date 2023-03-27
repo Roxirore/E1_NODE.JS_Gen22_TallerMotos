@@ -1,17 +1,47 @@
-exports.findAllUsers = (req, res) => {
+const User = require('../models/users.model');
+
+exports.findAllUsers = async (req, res) => {
+  const users = await User.findAll({
+    where: {
+      status: 'available',
+    },
+  });
   res.json({
-    message: 'estoy en la ruta get users',
+    message: 'the query has been done successfully',
+    results: users.length,
+    users,
   });
 };
-exports.createUser = (req, res) => {
-  console.log(req.body);
+exports.createUser = async (req, res) => {
+  const { userid, name, email, password, role, status } = req.body;
+  const user = await User.create({
+    name,
+    email,
+    password,
+    role,
+    status,
+  });
   res.status(201).json({
     message: 'estoy en la ruta post users',
+    user,
   });
 };
-exports.findOneUser = (req, res) => {
-  res.json({
-    message: 'estoy en la ruta get one user',
+exports.findOneUser = async (req, res) => {
+  const { userid } = req.params;
+
+  const user = await User.findOne({
+    where: {
+      userid,
+    },
+  });
+  if (!user) {
+    return res.status(404).json({
+      message: `user with id ${userid} not found`,
+    });
+  }
+  res.status(200).json({
+    message: 'the query has been done successfully',
+    user,
   });
 };
 exports.updateUser = (req, res) => {

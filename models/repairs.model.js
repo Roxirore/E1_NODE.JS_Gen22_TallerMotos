@@ -15,6 +15,7 @@ const Repair = dbRepairs.define('repairs', {
   status: {
     type: DataTypes.STRING,
     allowNull: false,
+    defaultValue: 'pending',
   },
   userid: {
     type: DataTypes.INTEGER,
