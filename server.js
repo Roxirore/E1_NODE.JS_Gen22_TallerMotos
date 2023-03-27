@@ -1,12 +1,25 @@
 const app = require('./app');
-const { db } = require('./database/config');
+const { dbUsers } = require('./database/users.config');
+const { dbRepairs } = require('./database/repairs.config');
 
-db.authenticate()
-  .then(() => console.log('Database Authenticated!'))
+dbUsers
+  .authenticate()
+  .then(() => console.log('DatabaseUsers Authenticated!'))
   .catch((error) => console.log(error));
 
-db.sync()
-  .then(() => console.log('Database Synced!'))
+dbUsers
+  .sync()
+  .then(() => console.log('DatabaseUsers Synced!'))
+  .catch((error) => console.log(error));
+
+dbRepairs
+  .authenticate()
+  .then(() => console.log('DatabaseRepairs Authenticated!'))
+  .catch((error) => console.log(error));
+
+dbRepairs
+  .sync()
+  .then(() => console.log('DatabaseRepairs Synced!'))
   .catch((error) => console.log(error));
 
 const port = 3030;
