@@ -1,42 +1,14 @@
 const express = require('express');
 
-const findAllRepairs = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get repairs',
-  });
-};
-const createRepair = (req, res) => {
-  console.log(req.body);
-  res.json({
-    message: 'Rox, estoy en la ruta post repairs',
-  });
-};
-const findOneRepair = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get one repair',
-  });
-};
-const updateRepair = (req, res) => {
-  console.log(req.params);
-  const { requestTime } = req;
-  res.json({
-    message: 'Rox, estoy en la ruta patch repairs',
-    requestTime,
-  });
-};
-const deleteRepair = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta delete repairs',
-  });
-};
+const repairsController = require('./../controllers/repairs.controller');
 
 const router = express.Router();
 
-router.get('/', findAllRepairs);
-router.post('/', createRepair);
-router.get('/repair/:id', findOneRepair);
-router.patch('/repair/:id', updateRepair);
-router.delete('/repair/:id', deleteRepair);
+router.get('/', repairsController.findAllRepairs);
+router.post('/', repairsController.createRepair);
+router.get('/repair/:id', repairsController.findOneRepair);
+router.patch('/repair/:id', repairsController.updateRepair);
+router.delete('/repair/:id', repairsController.deleteRepair);
 
 module.exports = router;
 

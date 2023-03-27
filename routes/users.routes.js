@@ -1,40 +1,14 @@
 const express = require('express');
 
-const findAllUsers = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get users',
-  });
-};
-const createUser = (req, res) => {
-  console.log(req.body);
-  res.json({
-    message: 'Rox, estoy en la ruta post users',
-  });
-};
-const findOneUser = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta get one user',
-  });
-};
-const updateUser = (req, res) => {
-  console.log(req.params);
-  res.json({
-    message: 'Rox, estoy en la ruta patch users',
-  });
-};
-const deleteUser = (req, res) => {
-  res.json({
-    message: 'Rox, estoy en la ruta delete users',
-  });
-};
+const usersController = require('./../controllers/users.controller');
 
 const router = express.Router();
 
-router.get('/', findAllUsers);
-router.post('/', createUser);
-router.get('/:userid', findOneUser);
-router.patch('/:userid', updateUser);
-router.delete('/:userid', deleteUser);
+router.get('/', usersController.findAllUsers);
+router.post('/', usersController.createUser);
+router.get('/:userid', usersController.findOneUser);
+router.patch('/:userid', usersController.updateUser);
+router.delete('/:userid', usersController.deleteUser);
 
 module.exports = router;
 
